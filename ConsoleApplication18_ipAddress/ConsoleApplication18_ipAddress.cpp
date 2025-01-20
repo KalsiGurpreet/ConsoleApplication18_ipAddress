@@ -19,12 +19,18 @@ int main(void)
 	char* lastOnePtr;
 	short digitCounter = 0;
 
-	char lastThreeArray[12];
-	char lastTwoArray[8];
-	char lastOneArray[4];
+	char lastOneArray[20];
+	char lastTwoArray[20];
+	char lastThreeArray[20];
+
+	lastOnePtr = lastOneArray;
+	lastTwoPtr = lastTwoArray;
+	lastThreePtr = lastThreeArray;
 
 	char* digitCheckPtr;
-	char digitCheckArray[12];
+	char digitCheckArray[30];  
+
+	digitCheckPtr = digitCheckArray;
 
 	puts("Enter the IP address:");
 	fgets(ipAddress, 30, stdin);   
@@ -32,23 +38,23 @@ int main(void)
 	                                       //that the printf function 
 	                                       //has successfully sent to the output.
 
-	digitCheckPtr = digitCheckArray;
-	lastOnePtr = lastOneArray;
-	lastTwoPtr = lastTwoArray;
-	lastThreePtr = lastThreeArray;
+	
+	
 
 	/* compile error was coming due to uninitialized pointers and array, therefore above three
 	statements implimented.*/
 
 
-	ptr = ipAddress;
+	ptr = ipAddress; // pointer pointing to first character of ipAddress.
 
 	k = strlen(ptr);
 	// printf("IP address length is %d\n", k);retain
 
+	/* counting the dots in ipaddress */
+
 	for (i = 0; i < 30; i++)
 	{
-		if (*ptr == '.') // 46 for dot. // putting 46 makes it unicode.
+		if (*ptr == '.') // 46 for dot. // putting 46 makes it unicode only for this machine.
 		{
 			dotCounter++;
 		}
@@ -59,12 +65,13 @@ int main(void)
 
 	digitCheckPtr = ptr; 
 
+	/* getting only numerics in array digitCheckArray not dot */
+
 	for (i = 0; i < 30; i++)
 	{
 		if (*digitCheckPtr == '.')
 		{
 			digitCheckPtr++;
-			
 		}
 
 		digitCheckArray[i] = *digitCheckPtr;
@@ -75,7 +82,7 @@ int main(void)
 	// short a = isdigit('3');  // cannot pass a pointer as it becomes function pointer.
 	// printf("a is %d\n", a);
 
-	// printf("digitCheckArray[] is %s\n", digitCheckArray);retain
+	printf("digitCheckArray[] is %s\n", digitCheckArray); // retain
 
 
 	int j = strlen(digitCheckArray);
@@ -83,6 +90,7 @@ int main(void)
 
 	short l = (j - 1); // without Null character.
 
+	/* only taking digits from ASCII chart.*/
 
 	for (i = 0; i < l; i++)
 	{
@@ -98,24 +106,15 @@ int main(void)
 			puts("This element is non numeric");
 		}
 	}
-	// printf("digit counter is %d\n", digitCounter);retain
+	printf("digit counter is %d\n", digitCounter); // retain
+	printf("l is %d\n", l);
 
-	/*
-		if (isdigit(*ptr))
-		{
-			puts("Character is numeric.");
-		}
-		else
-		{
-			puts("Character is non numeric.");  // assertion failure fault.
-		}
-	*/
 
 	ptr = ipAddress;
 
-	if (dotCounter == 3 && digitCounter >= l)
+	if (dotCounter == 3 && digitCounter <= l)
 	{
-
+		/* first block starts here */
 		for (i = 0; i < 30; i++)
 		{
 
@@ -141,6 +140,9 @@ int main(void)
 		puts("");
 
 		counter = 0;
+
+		/* second block starts here */
+
 		for (i = 0; i < 30; i++)
 		{
 			if (*ptr == '.')
@@ -165,6 +167,7 @@ int main(void)
 		}
 		counter = 0;
 
+		/* third block starts here */
 
 		for (i = 0; i < 30; i++)
 		{
@@ -195,7 +198,7 @@ int main(void)
 		//ptr = ptr + 4;
 		//printf("...%c\n", *ptr);
 
-
+		/* fourth block starts here */
 
 		for (i = 0; i < 30; i++)
 		{
@@ -214,36 +217,43 @@ int main(void)
 			//printf("counter is set to %d\n", counter);
 		}
 
+		if (counter > 4)  // 4 as we have to count null character in last as well.
+		{
+			printf("Invalid IP address as counter is set to %d\n", counter);
+		}
+
+
 		//printf("first element of lastOneArray should be %c\n", *lastOnePtr); test statment
 
-		for (i = 0; i < 4; i++)
+		for (i = 0; i < 20; i++)
 		{
+			
 			lastOneArray[i] = *lastOnePtr;
 			lastOnePtr++;
 		}
+		
 
-		printf("Last 1 part is %s", lastOneArray);
+		printf("Last 1 part is %s\n", lastOneArray);
 
-		for (i = 0; i < 8; i++)
+		for (i = 0; i < 20; i++)
 		{
+			
 			lastTwoArray[i] = *lastTwoPtr;
 			lastTwoPtr++;
 		}
 
-		printf("Last 2 part is %s", lastTwoArray);
+		printf("Last 2 part is %s\n", lastTwoArray);
 
-		for (i = 0; i < 12; i++)
+		for (i = 0; i < 20; i++)
 		{
+			
 			lastThreeArray[i] = *lastThreePtr;
 			lastThreePtr++;
 		}
 
-		printf("Last 3 part is %s", lastThreeArray);
+		printf("Last 3 part is %s\n", lastThreeArray);
 
-		if (counter > 4)
-		{
-			printf("Invalid IP address as counter is set to %d\n", counter);
-		}
+		
 	}
 	else
 	{

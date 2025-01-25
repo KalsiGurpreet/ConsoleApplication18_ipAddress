@@ -38,13 +38,6 @@ int main(void)
 	                                       //that the printf function 
 	                                       //has successfully sent to the output.
 
-	
-	
-
-	/* compile error was coming due to uninitialized pointers and array, therefore above three
-	statements implimented.*/
-
-
 	ptr = ipAddress; // pointer pointing to first character of ipAddress.
 
 	k = strlen(ptr);
@@ -77,10 +70,7 @@ int main(void)
 		digitCheckArray[i] = *digitCheckPtr;
 		digitCheckPtr++;	
 	}
-	
 
-	// short a = isdigit('3');  // cannot pass a pointer as it becomes function pointer.
-	// printf("a is %d\n", a);
 
 	printf("digitCheckArray[] is %s\n", digitCheckArray); // retain
 
@@ -103,7 +93,7 @@ int main(void)
 		}
 		else
 		{
-			puts("This element is non numeric");
+			printf("%c element is non numeric.\n", digitCheckArray[i]);
 		}
 	}
 	printf("digit counter is %d\n", digitCounter); // retain
@@ -112,7 +102,7 @@ int main(void)
 
 	ptr = ipAddress;
 
-	if (dotCounter == 3 && digitCounter <= l)
+	if (dotCounter == 3 && digitCounter == l)
 	{
 		/* first block starts here */
 		for (i = 0; i < 30; i++)
@@ -231,9 +221,8 @@ int main(void)
 			lastOneArray[i] = *lastOnePtr;
 			lastOnePtr++;
 		}
-		
-
 		printf("Last 1 part is %s\n", lastOneArray);
+
 
 		for (i = 0; i < 20; i++)
 		{
@@ -241,7 +230,6 @@ int main(void)
 			lastTwoArray[i] = *lastTwoPtr;
 			lastTwoPtr++;
 		}
-
 		printf("Last 2 part is %s\n", lastTwoArray);
 
 		for (i = 0; i < 20; i++)
